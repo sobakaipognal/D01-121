@@ -29,6 +29,15 @@ int main(int argc, char *argv[])
         return 1;
     }
 
+for (int i = 1; i < argc; ++i)
+{
+    if (strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0)
+    {
+        help_menu();
+        return 0;
+    }
+}
+
     for (int i = 1; i < argc; ++i)
     {
         if (strcmp(argv[i], "-f") == 0)
@@ -67,11 +76,7 @@ int main(int argc, char *argv[])
     
     for (int i = 1; i < argc; ++i)
     {
-        if ((strcmp(argv[i], "-h") == 0) || (strcmp(argv[i], "--help") == 0))
-        {
-            help_menu();
-            }
-        else if (strcmp(argv[i], "-m") == 0)
+        if (strcmp(argv[i], "-m") == 0)
         {
             if (i + 1 < argc)
             {

@@ -42,8 +42,8 @@ void parse_data(FILE *filename, Stat *month_stat, For_count *accum)
 
 void month_statistic(Stat *month_stat, int num, For_count *accum)
 {
-    printf("## Year Month MonthAver MonthMax MonthMin\n");
-    printf("%02d %4d %5d %9d %8d %8d", 1, YEAR, num, ((accum+num-1)->sum)/((accum+num-1)->count),
+    printf("\n## Year Month MonthAver MonthMax MonthMin\n");
+    printf("%02d %4d %5d %9d %8d %8d\n", 1, YEAR, num, ((accum+num-1)->sum)/((accum+num-1)->count),
     (month_stat+num-1)->max, (month_stat+num-1)->min);
 }
 
@@ -63,10 +63,10 @@ void year_statistic(Stat *month_stat, For_count *accum)
     
     aver = tot_sum / tot_count;
 
-    printf("Year YearhAver YearMax YearMin\n");
+    printf("\nYear YearhAver YearMax YearMin\n");
     printf("%4d %9d %7d %7d\n", YEAR, aver, max, min);
     
-    printf("## Year Month MonthAver MonthMax MonthMin\n");
+    printf("\n## Year Month MonthAver MonthMax MonthMin\n");
     
     for (int i = 0; i < MONTHS; i++)
     {

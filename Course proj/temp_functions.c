@@ -49,22 +49,22 @@ void month_statistic(Stat *month_stat, int num, For_count *accum)
 
 void year_statistic(Stat *month_stat, For_count *accum)
 {
-    int max = 0, min = 0, aver = 0;
+    int max = -128, min = 127, aver = 0;
     int tot_sum = 0, tot_count = 0;
     
     for (int i = 0; i < MONTHS; i++)
     {
-        max += (month_stat+i)->max;
-        min += (month_stat+i)->min;
+        if(max < (month_stat+i)->max) max = (month_stat+i)->max;
+        if(min > (month_stat+i)->min) min = (month_stat+i)->min;
         if((accum+i)->count == 0) continue;
-        tot_sum = (accum+i)->sum;
-        tot_count = (accum+i)->count;
+        tot_sum += (accum+i)->sum;
+        tot_count += (accum+i)->count;
     }
     
     aver = tot_sum / tot_count;
 
     printf("Year YearhAver YearMax YearMin\n");
-    printf("%4d %9d %7d %7d\n", YEAR, aver, max/MONTHS, min/MONTHS);
+    printf("%4d %9d %7d %7d\n", YEAR, aver, max, min);
     
     printf("## Year Month MonthAver MonthMax MonthMin\n");
     

@@ -82,7 +82,7 @@ void help_menu()
     printf("Arguments to work with:\n");
     printf("    -h                                  Show this help.\n");
     printf("    -f <filename>                       Name of the statistics file.\n");
-    printf("    -m [month number] [year]            Number or name of month to view statistic.\n");
+    printf("    -m [month number]                    Number or name of month to view statistic.\n");
     printf("\nExamples:\n");
     printf("    t_sens.exe -f <filename>.csv -m 10\n    shows statistics for October 2021 using file temp_stat.csv.\n\n");
 }

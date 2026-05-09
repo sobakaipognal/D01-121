@@ -2,7 +2,7 @@
 #include <stdint.h> //for int8_t etc
 #include <string.h>
 #include <stdlib.h>
-#include "temp_api.h"
+#include "temp_functions.h"
 
 int main(int argc, char *argv[])
 {

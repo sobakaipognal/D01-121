@@ -23,7 +23,7 @@ void parse_data(FILE *filename, Stat *month_stat, For_count *accum)
 
         if(ok!=6)
         {
-            printf("Error in line: %d\n", line);
+            printf("\nError in line: %d\n", line);
             int a;
             while((a = fgetc(filename)) != '\n' && a != EOF);
             continue;

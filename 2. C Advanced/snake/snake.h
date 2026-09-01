@@ -6,7 +6,7 @@
 #include <ncurses/ncurses.h>
 
 #define MIN_Y  2
-enum {LEFT=1, UP, RIGHT, DOWN, STOP_GAME=KEY_F(10)};
+enum {LEFT, UP, RIGHT, DOWN, STOP_GAME=KEY_F(10)};
 enum {MAX_TAIL_SIZE=100, START_TAIL_SIZE=3, MAX_FOOD_SIZE=20, FOOD_EXPIRE_SECONDS=10};
 
 // Здесь храним коды управления змейкой
@@ -18,7 +18,7 @@ struct control_buttons
     int right;
 };
 
-extern struct control_buttons default_controls;
+extern struct control_buttons default_controls[];
 
 //Хвост это массив состоящий из координат x,y
 typedef struct tail_t

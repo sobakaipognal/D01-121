@@ -74,9 +74,20 @@ void go(struct snake_t *head)
     refresh();
 }
 
-int checkDirection(snake_t* snake, int32_t key)
+int checkDirection(snake_t *snake, int32_t key)
 {
-    
+     for (int i = 0; i < CONTROLS_ARR_SIZE; ++i)
+    {
+        if (key == default_controls[i].down && snake->direction == UP)
+            return 0;
+        else if (key == default_controls[i].up && snake->direction == DOWN)
+            return 0;
+        else if (key == default_controls[i].right && snake->direction == LEFT)
+            return 0;
+        else if (key == default_controls[i].left && snake->direction == RIGHT)
+            return 0;
+    }
+    return 1;
 }
 
 void changeDirection(struct snake_t *snake, const int32_t key)

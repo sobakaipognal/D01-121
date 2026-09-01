@@ -30,7 +30,7 @@ int main()
         if(isCrush(snake)) break; // Врезаемся в хвост
         goTail(snake);
         while(((double)clock()-start_time)/CLOCKS_PER_SEC<DELAY);
-        changeDirection(snake, key_pressed);
+        if(checkDirection(snake, key_pressed)) changeDirection(snake, key_pressed);
     }
     free(snake->tail);
     free(snake);

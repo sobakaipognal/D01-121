@@ -48,6 +48,7 @@ void initTail(struct tail_t t[], size_t size);
 void initHead(struct snake_t *head, int x, int y);
 void initSnake(snake_t *head, size_t size, int x, int y);
 void go(struct snake_t *head); //Движение головы с учетом текущего направления движения
+int checkDirection(snake_t* snake, int32_t key); //запрет движение в противоположную сторону по кнопке
 void changeDirection(struct snake_t* snake, const int32_t key);
 void goTail(struct snake_t *head); //Движение хвоста с учетом движения головы
 int isCrush(snake_t * snake); //Стокновение головы с хвостом

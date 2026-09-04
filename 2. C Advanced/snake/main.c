@@ -9,12 +9,15 @@
 #include "snake.h"
 
 #define DELAY 0.1 //для задержке движения змейки
- 
+
 int main()
 {
     snake_t* snake = (snake_t*)malloc(sizeof(snake_t));
+    food_t food[MAX_FOOD_SIZE];
     initSnake(snake,START_TAIL_SIZE,10,10);
+    initFood(food[], MAX_FOOD_SIZE);
     initscr();
+    initFood();
     keypad(stdscr, TRUE);   // Включаем F1, F2, стрелки и т.д.
     raw();                  // Откдючаем line buffering
     noecho();               // Отключаем echo() режим при вызове getch

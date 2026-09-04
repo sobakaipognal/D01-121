@@ -39,6 +39,17 @@ void initSnake(snake_t *head, size_t size, int x, int y)
     // head->controls = default_controls[0]; //не использую пока
 }
 
+void initFood(struct food f[], size_t size)
+{
+    struct food init = {0, 0, 0, 0, 0};
+    int max_y = 0; max_x = 0;
+    getmaxyx(stdscr, max_y, max_x);
+    for(size_t i = 0; i < size; ++i)
+    {
+        f[i] = init;
+    }
+}
+
 // Движение головы с учетом текущего направления движения
 void go(struct snake_t *head)
 {

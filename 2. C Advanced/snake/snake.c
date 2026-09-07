@@ -3,9 +3,10 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <stdlib.h>
+#include <time.h>
 
 #define CONTROLS_ARR_SIZE \
-    (sizeof(default_controls)/ sizeof(default_controls[0]))
+    (int)(sizeof(default_controls)/ sizeof(default_controls[0]))
 
 struct control_buttons default_controls[] =
     {
@@ -39,14 +40,50 @@ void initSnake(snake_t *head, size_t size, int x, int y)
     // head->controls = default_controls[0]; //не использую пока
 }
 
-void initFood(struct food f[], size_t size)
+void initFood(food_t *f, size_t size)
 {
     struct food init = {0, 0, 0, 0, 0};
-    int max_y = 0; max_x = 0;
-    getmaxyx(stdscr, max_y, max_x);
+    // int max_y = 0, max_x = 0;
+    // getmaxyx(stdscr, max_y, max_x);
     for(size_t i = 0; i < size; ++i)
     {
         f[i] = init;
+    }
+}
+
+void putFoodSeed(food_t *ft)
+{
+    int max_x = 0, max_y = 0;
+    char spoint[2] = {0};
+    getmaxyx(stdscr, max_y, max_x);
+    ft->x = rand() % (max_x-1);
+    ft->y = rand() % (max_y-2) + 1;
+    ft->put_time = time(NULL);
+    ft->point = '$';
+    ft->enable = 1;
+    spoint[0] = ft->point;
+    mvprintw(ft->y, ft->x, "%s", spoint);
+}
+
+void putSeed(food_t *f, size_t number_seeds)
+{
+    for(size_t i = 0; i < number_seeds; ++i)
+    {
+        putFoodSeed(&f[i]);
+    }
+}
+
+void refreshSeed(food_t *f, size_t number_seeds)
+{
+    for(size_t i = 0; i < number_seeds; ++i)
+    {
+        if(f[i].put_time)
+        {
+            if(!f[i].enable || (time(NULL)-f[i].put_time)>FOOD_EXPIRE_SECONDS)
+            {
+                putFoodSeed(&f[i]);
+            }
+        }
     }
 }
 

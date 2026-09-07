@@ -14,15 +14,18 @@ int main()
 {
     snake_t* snake = (snake_t*)malloc(sizeof(snake_t));
     food_t food[MAX_FOOD_SIZE];
-    initSnake(snake,START_TAIL_SIZE,10,10);
-    initFood(food[], MAX_FOOD_SIZE);
+
     initscr();
-    initFood();
     keypad(stdscr, TRUE);   // Включаем F1, F2, стрелки и т.д.
     raw();                  // Откдючаем line buffering
     noecho();               // Отключаем echo() режим при вызове getch
     curs_set(FALSE);        // Отключаем курсор
     mvprintw(1, 0,"Use arrows for control. Press 'F10' for EXIT");
+    
+    initSnake(snake,START_TAIL_SIZE,10,10);
+    initFood(food, MAX_FOOD_SIZE);
+    putSeed(food, MAX_FOOD_SIZE);
+    
     timeout(0);             //Отключаем таймаут после нажатия клавиши в цикле
     int key_pressed=0;
     while(key_pressed != STOP_GAME)
@@ -30,6 +33,7 @@ int main()
         clock_t start_time = clock();
         key_pressed = getch(); // Считываем клавишу
         go(snake);
+        refreshSeed(food, MAX_FOOD_SIZE);
         if(isCrush(snake)) break; // Врезаемся в хвост
         goTail(snake);
         while(((double)clock()-start_time)/CLOCKS_PER_SEC<DELAY);

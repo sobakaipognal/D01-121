@@ -22,7 +22,7 @@ int main()
     curs_set(FALSE);        // Отключаем курсор
     mvprintw(1, 0,"Use arrows for control. Press 'F10' for EXIT");
     
-    initSnake(snake,START_TAIL_SIZE,10,10);
+    initSnake(snake, START_TAIL_SIZE, 10, 10);
     initFood(food, MAX_FOOD_SIZE);
     putSeed(food, MAX_FOOD_SIZE);
     

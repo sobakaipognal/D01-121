@@ -62,6 +62,7 @@ void initFood(food_t f[], size_t size);
 void putSeed(food_t *f, size_t number_seeds);
 void putFoodSeed(food_t *ft);
 void refreshSeed(food_t *f, size_t number_seeds);
+bool haveEat (struct snake_t *head, struct food_t *f);
 
 void go(struct snake_t *head); //Движение головы с учетом текущего направления движения
 int checkDirection(snake_t* snake, int32_t key); //запрет движение в противоположную сторону по кнопке

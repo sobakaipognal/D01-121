@@ -20,6 +20,7 @@ int main()
 	add_to_list(head);
 	swap_list(head);
 	print_list(head);
+	delete_list(head);
 		
 }
 
@@ -41,8 +42,8 @@ void add_to_list(list_t *head)
 		if(ch==' ') 
 		{
 			node->next = calloc(1, sizeof(list_t));
-			node = node->next;
 			node->word[i] = '\0';
+			node = node->next;
 			i = 0;
 		}
 		else
@@ -59,6 +60,7 @@ void swap_list(list_t *head)
 	bool been_swaped = 1;
 	while(been_swaped)
 	{
+		been_swaped = 0;
 		while(node->next)
 		{
 			if(strcmp(node->word, node->next->word) > 0)
@@ -69,12 +71,9 @@ void swap_list(list_t *head)
 				strcpy(node->next->word, temp);
 				been_swaped = 1;
 			}
-			else
-			{
-				been_swaped = 0;
-			}
 			node = node->next;
 		}
+		node = head;
 	}
 }
 
@@ -85,8 +84,15 @@ void print_list(list_t *head)
 	
 	while(node)
 	{
-		printf("%s", node->word);
+		printf("%s ", node->word);
 		++i;
 		node = node->next;
 	}
+}
+
+void delete_list(list_t *head)
+{
+	if(head == NULL) return;
+	delete_list(head->next);
+	free(head);
 }
